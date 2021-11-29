@@ -7,3 +7,10 @@ out/
 *.iml
 *.ipr
 *.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/

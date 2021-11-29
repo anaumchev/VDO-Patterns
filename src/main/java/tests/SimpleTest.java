@@ -8,7 +8,6 @@ public class SimpleTest {
     public static void main (String[] args) {
         for (Checkable r : Windows10SecurityTechnicalImplementationGuide.allSTIGs()) {
             r.check();
-
         }
     }
 }

@@ -23,28 +23,28 @@ public abstract class MonitoringLoop implements Checkable {
 
     protected boolean exitCondition() { return false; }
 
-    public Checkable.CheckStatus check() {
+    public CheckStatus check() {
         while(!precondition()) {
             try {
                 Thread.sleep (sleepMilliseconds());
             } catch (InterruptedException e) {
-                return Checkable.CheckStatus.INCOMPLETE;
+                return CheckStatus.INCOMPLETE;
             }
         }
         for (int i = boundary; i > 0 && !exitCondition(); i = variant(i)) {
             if (!invariant()) {
-                return Checkable.CheckStatus.FAIL;
+                return CheckStatus.FAIL;
             }
             try {
                 Thread.sleep (sleepMilliseconds());
             } catch (InterruptedException e) {
-                return Checkable.CheckStatus.INCOMPLETE;
+                return CheckStatus.INCOMPLETE;
             }
         }
         if(!postcondition()) {
-            return Checkable.CheckStatus.FAIL;
+            return CheckStatus.FAIL;
         }
-        return Checkable.CheckStatus.PASS;
+        return CheckStatus.PASS;
     }
 
     abstract public String TCTL();
